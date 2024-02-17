@@ -3,6 +3,7 @@ import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import { PostsList } from "../MainContent/mainContent";
 import { BasicLayout } from "../BasicLayout";
 import { PostDetails } from "../Post";
+import { ROUTES } from "../../constants/routes";
 
 function App() {
   return (
@@ -11,9 +12,9 @@ function App() {
         <NavLink to="posts">Posts</NavLink>
       </nav>
       <Routes>
-        <Route path="/home" element={<BasicLayout />} />
-        <Route path="/posts" element={<PostsList />} />
-        <Route path="/posts/:id" element={<PostDetails />} />
+        {ROUTES.map(({ path, element }) => (
+          <Route path={path} element={element} />
+        ))}
       </Routes>
     </BrowserRouter>
   );
