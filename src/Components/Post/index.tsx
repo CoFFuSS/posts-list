@@ -14,14 +14,12 @@ export const PostDetails = () => {
   const handleClick = () => {
     setIsActive((prev) => !prev);
   };
-  const newId = post[0].id;
-  console.log(newId);
   return (
     <>
       <StyledH3>{post[0].title}</StyledH3>
       <StyledH3>{post[0].body}</StyledH3>
       <button onClick={handleClick}>SHOW COMMENTS</button>
-      {isActive ? <ShowComments postId={newId} /> : null}
+      {isActive ? <ShowComments postId={post[0].id} /> : null}
     </>
   );
 };
