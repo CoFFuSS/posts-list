@@ -1,7 +1,9 @@
+import { StyledH3 } from "../MainContent/styled";
+
 export const BasicLayout = () => {
   return (
     <>
-      <h1>XUIXUIXUI</h1>
+      <StyledH3>XUIXUIXUI</StyledH3>
     </>
   );
 };

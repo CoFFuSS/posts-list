@@ -1,25 +1,33 @@
 import { useParams } from "react-router-dom";
 import { StyledH3 } from "./styled";
-import { POSTS } from "../../constants/mock";
+import { ShowComments } from "../ShowComments";
+import { useCachedPost } from "../../api/post";
 import { useState } from "react";
-import { ShowComments } from "../../ShowComments";
+
+export interface PostInterface {
+  body: string;
+  id: number;
+  title: string;
+  userId: number;
+}
 
 export const PostDetails = () => {
   const [isActive, setIsActive] = useState(false);
-
   const { id } = useParams();
 
-  const post = POSTS.filter((item) => String(item.id) == id);
+  const post = useCachedPost(Number(id));
 
   const handleClick = () => {
     setIsActive((prev) => !prev);
   };
+
   return (
     <>
-      <StyledH3>{post[0].title}</StyledH3>
-      <StyledH3>{post[0].body}</StyledH3>
+      <StyledH3>{post.id}</StyledH3>
+      <StyledH3>{post.title}</StyledH3>
+      <StyledH3>{post.body}</StyledH3>
       <button onClick={handleClick}>SHOW COMMENTS</button>
-      {isActive ? <ShowComments postId={post[0].id} /> : null}
+      {isActive ? <ShowComments postId={post.id} /> : null}
     </>
   );
 };

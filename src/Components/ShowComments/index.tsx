@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { StyledH3 } from "../Components/MainContent/styled";
-import { COMMENTS } from "../constants/mock";
+import { StyledH3 } from "../MainContent/styled";
+import { useCachedComments } from "../../api/postComments";
 
-export const ShowComments = ({ postId }: { postId: number }) => {
-  const comments = COMMENTS.filter((item) => item.postId == postId);
+export const ShowComments = ({ postId }: { postId: number | undefined }) => {
+  const comments = useCachedComments(Number(postId));
   return (
     <>
       {comments.map(({ id, name, body }) => (
